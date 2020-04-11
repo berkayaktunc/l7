@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Account.h"
+#include "account.h"
 using namespace std;
 
 void menu(){
@@ -60,8 +60,6 @@ int main(int argc, char *argv[])
             cout << "Enter a number of years: ";
             cin >> tempInt;
             temp = user->calculateFutureBalance(tempFloat,tempInt);
-
-            //cout << user->calculateFutureBalance(tempFloat,tempInt);
 
             cout << "Yourbalance will be " << temp << " TL" << endl;
 
