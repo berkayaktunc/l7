@@ -20,7 +20,7 @@ public:
 
     void inputTransaction(char,int);
     float calculateFutureBalance(float, int);
-    int mortgageYear(int totalMonthofMortgage);
+    int mortgageYear(int, float, float);
 };
 
 #endif // ACCOUNT_H

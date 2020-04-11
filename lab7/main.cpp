@@ -12,7 +12,7 @@ void menu(){
     cout << "7. Exit" <<endl;
 }
 
-int main(int argc, char *argv[])
+int main()
 {
     Account *user = new Account();
 
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
             cout << "Enter a new account balance: ";
             cin >> tempFloat;
             user->setAccountBalance(tempFloat);
-            cout << "New account balance is " << user->getAccountBalance() << "TL" << endl;
+            cout << "New account balance is " << user->getAccountBalance() << " TL" << endl;
         }
         else if(select == 2){
             cout << "Account balance is " << user->getAccountBalance() << " TL" << endl;
@@ -41,34 +41,50 @@ int main(int argc, char *argv[])
 
             user->inputTransaction('D',tempInt);
 
-            cout << "New account balance is " << user->getAccountBalance() << "TL" << endl;
+            cout << "New account balance is " << user->getAccountBalance() << " TL" << endl;
         }
         else if(select == 4){
             cout << "Enter an amount for withdrawal: ";
             cin >> tempInt;
 
-            if(user->getAccountBalance() > tempInt) user->setAccountBalance( user->getAccountBalance() - tempInt);
+            if(user->getAccountBalance() > tempInt) user->inputTransaction('W', tempInt);
             else    cout << "No sufficient amount in the bank account" << endl;
 
-            cout << "New account balance is " << user->getAccountBalance() << "TL" << endl;
+            cout << "New account balance is " << user->getAccountBalance() << " TL" << endl;
         }
         else if(select == 5){
-            float temp = 0;
+            float tempBalance = 0;
             cout << "Enter an annual interest rate: ";
             cin >> tempFloat;
 
             cout << "Enter a number of years: ";
             cin >> tempInt;
-            temp = user->calculateFutureBalance(tempFloat,tempInt);
+            tempBalance = user->calculateFutureBalance(tempFloat,tempInt);
 
-            cout << "Yourbalance will be " << temp << " TL" << endl;
-
+            cout << "Your balance will be " << tempBalance << " TL" << endl;
+            cout << "after " << tempInt <<" years with the interest rate " << tempFloat;
+            user->setAccountBalance(tempBalance);
         }
         else if(select == 6){
+            float tempFloat2;
+            cout << "Enter a total amount of a mortgage: ";
+            cin >> tempInt;
+
+            cout << "Enter an annual mortgage interest rate: ";
+            cin >> tempFloat;
+
+            cout << "Enter an annual interest rate: ";
+            cin >> tempFloat2;
+
+            int year = user->mortgageYear(tempInt,tempFloat,tempFloat2);
+
+            cout << "You require " << year << "years to pay" << endl;
 
         }
+        else if(select == 7){
+            cout << "Goodbye!" <<endl;
+        }
         else    cout << "Unacceptable input!" <<endl;
-
+        cout << "\n" << endl;
     }
-    cout << "Goodbye!" <<endl;
 }

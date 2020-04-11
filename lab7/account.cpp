@@ -28,20 +28,25 @@ float Account::getAccountBalance(){
 }
 
 void Account::inputTransaction(char transactionType, int transactionAmount){
-    transactionAmount = 5;
     if( transactionType == 'D'){
-
+        setAccountBalance( getAccountBalance() + transactionAmount );
     }
-    else if( transactionType == 'W'){
-
+    else{
+        setAccountBalance( getAccountBalance() - transactionAmount);
     }
-    else    cout <<"Error!";
 }
 float Account::calculateFutureBalance(float annualInterestRate, int years){
-    annualInterestRate = 3.5;
-    years = 0;
-    return annualInterestRate;
+    float temp = getAccountBalance();
+    for(int i=0; years>i; i++){
+        temp += temp * annualInterestRate;
+    }
+    return temp;
 }
-int Account::mortgageYear(int totalMonthofMortgage){
-    totalMonthofMortgage = 0;
+int Account::mortgageYear(int totalMonthofMortgage, float mortgageIntrestRate,float intrestRate){
+    int year = 0;
+    for(year = 0 ; totalMonthofMortgage > 0 ; year++ ){
+        totalMonthofMortgage -= totalMonthofMortgage * mortgageIntrestRate;
+        totalMonthofMortgage += totalMonthofMortgage * intrestRate;
+    }
+    return year;
 }
